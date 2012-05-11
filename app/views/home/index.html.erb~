@@ -1,0 +1,24 @@
+<script type="text/javascript">
+  var jug = new Juggernaut;
+  jug.subscribe("channel1", function(data){
+    $('#messageContainer').append('<p>'+ data +'</p>');
+  });
+  
+  function sendMessage(){
+    message = $('#message').val();
+    
+    jQuery.ajax({
+      url:'/home/listener?message=' + message
+    });
+  }
+</script>
+
+<div class="well" id="messageContainer">
+</div>
+
+<form class="well">
+  <div class="input-append">
+    <%= text_field_tag "message", nil,:class => "span2", :size => 50 %>
+    <button class="btn" type="button" onClick="sendMessage();">Send</button>
+  </div>
+</form>
